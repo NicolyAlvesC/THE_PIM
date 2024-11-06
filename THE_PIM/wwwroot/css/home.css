@@ -3,7 +3,10 @@
     src: url(https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap);
 }
 
-
+@font-face {
+    font-family: Quicksand;
+    src: url(../fonts/Quicksand.ttf)
+}
 * {
     margin: 0;
     padding: 0;
@@ -34,7 +37,8 @@
 }
 
 .titulo-home {
-    font-size: 2em;
+    font-size: 5em;
+    font-weight: bold;
 }
 
 .descricao-home {
