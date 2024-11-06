@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "VOLK | Sua Fazenda Inteligente";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/css/home.css" asp-append-version="true" />
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <div class="conteiner-mae">
+        <div class="home">
+            <div class="box-titulo-desc">
+                <div class="titulo-home">
+                    <h1>VOLK</h1>
+                </div>
+                <div class="descricao-home">
+                    <h4>Sua Fazenda Inteligente</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="conteiner-middle">
+            <div class="box-titulo">
+                <h1>Conheça nossos Serviços!</h1>
+            </div>
+            <div class="box-servicos">
+                <!-- Usando asp:HyperLink para navegação para a página de produtos -->
+                <a href="@Url.Action("Produtos", "Home")">
+                    <div class="produtos">
+                        <div class="servicos-imagem">
+                            <img src="~/images/[.png" alt="produtos" />
+                        </div>
+                        <div class="servicos-descricao">
+                            <h2>Produtos</h2>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Usando asp:HyperLink para navegação para a página de fornecedores -->
+                <a href="@Url.Action("Fornecedores", "Home")">
+                    <div class="fornecedores">
+                        <div class="servicos-imagem">
+                            <img src="~/images/[.png" alt="fornecedores" />
+                        </div>
+                        <div class="servicos-descricao">
+                            <h2>Fornecedores</h2>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-fornecedores">
+            <div class="forms">
+                <div class="forms-1">
+                    <div class="f1-titulo">
+                        Entre em contato!
+                    </div>
+                    <form id="orderForm" method="post" asp-controller="Form" asp-action="Submit">
+                        <label for="cnpj">CNPJ:</label>
+                        <input type="text" id="cnpj" name="CNPJ" required>
+
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="e-mail" name="Email" required>
+
+                        <label for="descricao">Qual o assunto?</label>
+                        <textarea id="descricao" name="Descricao" rows="4" required></textarea>
+
+                        <button class="botao-forms" type="submit">Enviar</button>
+                    </form>
+
+                    @if (ViewBag.Message != null)
+                    {
+                        <div>@ViewBag.Message</div>
+                    }
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Made with ❤️ by VOLK &copy; 2024</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="~/css/fornecedores.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>VOLK | Fornecedores</title>
+</head>
+<body>
+    <script>
+        let indice = 0;
+
+        function mover(direcao) {
+            const imagens = document.getElementById('imagens');
+            const totalImagens = imagens.children.length;
+            indice = (indice + direcao + totalImagens) % totalImagens;
+            imagens.style.transform = 'translateX(' + (-indice * 100) + '%)';
+        }
+    </script>
+
+    <div class="conteiner-mae">
+
+        <div class="fornecedores-home">
+            <header>
+                <a href="@Url.Action("Index", "Home")" class="botao-voltar">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </header>
+            <div class="box-titulo-desc">
+                <div class="titulo-home">
+                    <h1>Nos Conheça!</h1>
+                </div>
+            </div>
+        </div>
+        <div class="fornecedores-middle">
+            <div class="titulo-middle">Quem são nossos fornecedores?</div>
+            <div class="carrossel">
+                <div class="imagens" id="imagens">
+                    <img class="imagem" src="~/images/banner_01.jpg" alt="Imagem 1">
+                    <img class="imagem" src="~/images/banner_02.jpg" alt="Imagem 2">
+                    <img class="imagem" src="~/images/banner_03.png" alt="Imagem 3">
+                </div>
+                <button class="botao botao-esquerda" onclick="mover(-1)" id="botaocar">&#10094;</button>
+                <button class="botao botao-direita" onclick="mover(1)" id="botaocar">&#10095;</button>
+            </div>
+        </div>
+
+        <!-- <div class="conteiner-footer">
+            <div class="forms">
+
+                <div class="forms-1">
+                    <div class="f1-titulo">
+                        Entre em contato e faça seu pedido!
+                    </div>
+                    <form id="orderForm">
+                        <label for="cnpj">CNPJ:</label>
+                        <input type="text" id="cnpj" name="cnpj" required>
+                        <label for="email">E-mail:</label>
+                        <input type="text" id="e-mail" name="e-mail" required>
+                        <label for="produto">Escolha um produto:</label>
+                        <select id="produto" name="produto" required>
+                            <option value="verduras">VERDURAS</option>
+                            <option value="legumes">LEGUMES</option>
+                            <option value="frutas">FRUTAS</option>
+                        </select>
+                        <label for="descricao">Descrição do Pedido:</label>
+                        <textarea id="descricao" name="descricao" rows="4" required></textarea>
+
+                        <button type="submit">Enviar</button>
+                    </form>
+                </div>
+                <hr/>
+                <div class="forms-2">
+                    <div class="f2-titulo">
+                        Fez o pedido e quer saber o status?
+                    </div>
+                    <form id="consultaForm" onsubmit="consultarPedidos(event)">
+                        <label for="cnpj">CNPJ:</label>
+                        <input type="text" id="cnpj" name="cnpj" required>
+
+                        <label for="data">Data do Pedido:</label>
+                        <input type="date" id="data" name="data" required>
+
+                        <button type="submit">Consultar</button>
+                    </form>
+                    <h2>Resultados da Consulta</h2>
+                        <table id="tabela-pedidos" border="1">
+                            <thead>
+                                <tr>
+                                    <th>CNPJ</th>
+                                    <th>Data do Pedido</th>
+                                    <th>Produto</th>
+                                    <th>Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                     </table>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Made with ❤️ by VOLK &copy; 2023</p>
+            </div>
+            </div> -->
+
+        <div class="footer-fornecedores">
+
+            <div class="forms-1">
+                <div class="f1-titulo">
+                    Entre em contato!
+                </div>
+                <form id="orderForm">
+                    <label for="cnpj">CNPJ:</label>
+                    <input type="text" id="cnpj" name="cnpj" required>
+
+                    <label for="email">E-mail:</label>
+                    <input type="text" id="e-mail" name="e-mail" required>
+
+                    <label for="descricao">Qual o assunto?</label>
+                    <textarea id="descricao" name="descricao" rows="4" required></textarea>
+
+                    <button class="botao-forms" type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>Made with ❤️ by VOLK &copy; 2024</p>
+        </div>
+    </div>
+</body>
+</html>

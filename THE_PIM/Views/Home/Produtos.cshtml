@@ -1,0 +1,174 @@
+﻿@{
+    ViewData["Title"] = "VOLK | Produtos";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/css/produtos.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <script>
+        function consultarPedidos(event) {
+            event.preventDefault();
+
+            const cnpj = document.getElementById('cnpj').value;
+            const data = document.getElementById('data').value;
+
+            const tabela = document.getElementById('tabela-pedidos');
+            const novaLinha = tabela.insertRow();
+            const celulaCNPJ = novaLinha.insertCell(0);
+            const celulaData = novaLinha.insertCell(1);
+            const celulaProduto = novaLinha.insertCell(2);
+            const celulaDescricao = novaLinha.insertCell(3);
+
+            celulaCNPJ.innerText = cnpj;
+            celulaData.innerText = data;
+            celulaProduto.innerText = 'Exemplo do Produto';
+            celulaDescricao.innerText = 'Descricao do Produto';
+        }
+
+        let indice = 0;
+
+        function mover(direcao) {
+            const imagens = document.getElementById('imagens');
+            const totalImagens = imagens.children.length;
+            indice = (indice + direcao + totalImagens) % totalImagens;
+            imagens.style.transform = 'translateX(' + (-indice * 100) + '%)';
+        }
+    </script>
+
+    <div class="conteiner-mae">
+        <div class="produtos-middle">
+            <header>
+                <a href="@Url.Action("Index", "Home")" class="botao-voltar">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </header>
+            <div class="titulo-produtos">Quais são nossos produtos?</div>
+            <div class="filtro">
+                <label for="filtro">Filtrar produtos:</label>
+                <select id="filtro" onchange="filtrarProdutos()">
+                    <option value="todos">Todos</option>
+                    <option value="categoria1">Frutas</option>
+                    <option value="categoria2">Legumes</option>
+                    <option value="categoria3">Vegetais</option>
+                </select>
+            </div>
+            <div class="filtrao">
+                <div class="produtos" id="produtos">
+                    <div class="produto categoria1" onclick="abrirPopup('Produto 1', 'Descrição do Produto 1')">
+                        <img src="~/images/[.png" alt="Produto 1">
+                        <h3>Maçã</h3>
+                    </div>
+                    <div class="produto categoria2" onclick="abrirPopup('Produto 2', 'Descrição do Produto 2')">
+                        <img src="~/images/[.png" alt="Produto 2">
+                        <h3>Chuchu</h3>
+                    </div>
+                    <div class="produto categoria3" onclick="abrirPopup('Produto 3', 'Descrição do Produto 3')">
+                        <img src="~/images/[.png" alt="Produto 3">
+                        <h3>Produto 3</h3>
+                    </div>
+                    <div class="produto categoria1" onclick="abrirPopup('Produto 4', 'Descrição do Produto 4')">
+                        <img src="~/images/[.png" alt="Produto 4">
+                        <h3>Produto 4</h3>
+                    </div>
+                </div>
+
+                <div class="popup" id="popup">
+                    <div class="popup-content">
+                        <span class="fechar" onclick="fecharPopup()">&times;</span>
+                        <div class="box">
+                            <p id="popup-titulo"></p>
+                            <p id="popup-descricao"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function filtrarProdutos() {
+                    const filtro = document.getElementById('filtro').value;
+                    const produtos = document.querySelectorAll('.produto');
+
+                    produtos.forEach(produto => {
+                        if (filtro === 'todos' || produto.classList.contains(filtro)) {
+                            produto.style.display = 'block';
+                        } else {
+                            produto.style.display = 'none';
+                        }
+                    });
+                }
+
+                function abrirPopup(titulo, descricao) {
+                    document.getElementById('popup-titulo').innerText = titulo;
+                    document.getElementById('popup-descricao').innerText = descricao;
+                    document.getElementById('popup').style.display = 'flex';
+                }
+
+                function fecharPopup() {
+                    document.getElementById('popup').style.display = 'none';
+                }
+            </script>
+        </div>
+
+        <div class="conteiner-footer">
+            <div class="forms">
+                <div class="forms-1">
+                    <div class="f1-titulo">
+                        Entre em contato e faça seu pedido!
+                    </div>
+                    <form id="orderForm" method="post">
+                        <label for="cnpj">CNPJ:</label>
+                        <input type="text" id="cnpj" name="cnpj" required>
+                        <label for="email">E-mail:</label>
+                        <input type="text" id="e-mail" name="e-mail" required>
+                        <label for="produto">Escolha um produto:</label>
+                        <select id="produto" name="produto" required>
+                            <option value="verduras">VERDURAS</option>
+                            <option value="legumes">LEGUMES</option>
+                            <option value="frutas">FRUTAS</option>
+                        </select>
+                        <label for="descricao">Descrição do Pedido:</label>
+                        <textarea id="descricao" name="descricao" rows="4" required></textarea>
+                        <button type="submit">Enviar</button>
+                    </form>
+                </div>
+                <hr />
+                <div class="forms-2">
+                    <div class="f2-titulo">
+                        Fez o pedido e quer saber o status?
+                    </div>
+                    <form id="consultaForm" onsubmit="consultarPedidos(event)">
+                        <label for="cnpj">CNPJ:</label>
+                        <input type="text" id="cnpj" name="cnpj" required>
+                        <label for="data">Data do Pedido:</label>
+                        <input type="date" id="data" name="data" required>
+                        <button type="submit">Consultar</button>
+                    </form>
+                    <h2>Resultados da Consulta</h2>
+                    <table id="tabela-pedidos" border="1">
+                        <thead>
+                            <tr>
+                                <th>CNPJ</th>
+                                <th>Data do Pedido</th>
+                                <th>Produto</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Made with ❤️ by VOLK &copy; 2024</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
