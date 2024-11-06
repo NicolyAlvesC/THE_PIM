@@ -129,13 +129,14 @@ textarea {
 }
 
 .filtrao {
-    margin-left: -21em;
+    margin-left: 2em;
     margin-top: 6em;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    
     font-family: Quicksand;
     color: white;
+    justify-content: space-evenly;
 }
 
 .filtro {
@@ -150,6 +151,7 @@ textarea {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+   
 }
 
 .produto {
@@ -162,8 +164,8 @@ textarea {
 }
 
     .produto img {
-        width: 13em;
-        height: 9em;
+        width: 14em;
+        height: 14em;
     }
 
 .popup {

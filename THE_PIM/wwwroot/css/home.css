@@ -85,9 +85,7 @@
     color: lightblue;
 }
 
-.servicos-imagem:hover {
-    box-shadow: lightblue 0.5em -0.5em;
-}
+
 
 a {
     text-decoration: none;
@@ -192,4 +190,14 @@ textarea {
     font-family: Quicksand;
     text-align: center;
     font-weight: bold;
+}
+
+img {
+    width: 21em;
+    height: 21em;
+    border-radius: 1em;
+}
+
+img:hover {
+    box-shadow: #ADD8E6 0.2em -0.2em;
 }
